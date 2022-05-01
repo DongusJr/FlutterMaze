@@ -3,6 +3,7 @@ import 'package:flutter_maze/utils/algorithms/Kruskals_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/aldous_broder_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/wilsons_algorithm.dart';
 import 'package:flutter_maze/utils/maze_algorithm.dart';
 
 class Maze {
@@ -33,6 +34,9 @@ class Maze {
         break;
       case MazeAlgorithmEnum.aldousBroderAlgorithm:
         algorithm = AldousBroderAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.wilsonsAlgorithm:
+        algorithm = WilsonsAlgorithm(this);
         break;
     }
   }

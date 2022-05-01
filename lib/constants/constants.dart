@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:validators/validators.dart';
 
-enum MazeState { start, running, done }
+enum MazeState { start, running, runningAlt, done }
 
 enum MazeAlgorithmEnum {
   recursiveBacktrackingAlgorithm,
   kruskalsAlgorithm,
   primsAlgorithm,
-  aldousBroderAlgorithm
+  aldousBroderAlgorithm,
+  wilsonsAlgorithm
 }
 
 String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {

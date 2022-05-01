@@ -54,8 +54,15 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(milliseconds: 5));
+      await Future.delayed(const Duration(milliseconds: 20));
     }
+    print("DONE");
+  }
+
+  void stepMaze() async {
+    setState(() {
+      maze.step();
+    });
   }
 
   void resetMaze() {
@@ -91,6 +98,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               functionButton("Run", runMaze),
+              functionButton("Step", stepMaze),
               functionButton("Reset", resetMaze),
             ]),
             Wrap(
@@ -100,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                 algorithmButton(MazeAlgorithmEnum.kruskalsAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.primsAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.aldousBroderAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.wilsonsAlgorithm),
               ],
             )
           ],
@@ -145,7 +154,7 @@ class MazePainter extends CustomPainter {
 
     for (var x = 0; x < mazeWidth; x++) {
       for (var y = 0; y < mazeHeight; y++) {
-        paint.color = maze.isAt(x, y) && maze.mazeState == MazeState.running
+        paint.color = maze.isAt(x, y) && maze.mazeState != MazeState.done
             ? Colors.green
             : (maze.goesDir(x, y, Direction.visit))
                 ? Colors.red.shade200

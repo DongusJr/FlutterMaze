@@ -81,6 +81,8 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
 
           int oppDir = oppositeDirection[direction]!;
           maze.markAt(newX, newY, oppDir);
+          maze.currentX = newX;
+          maze.currentY = newY;
           maze.changed = true;
           return;
         }

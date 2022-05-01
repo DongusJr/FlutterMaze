@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+enum MazeState { start, running, done }
+
+enum MazeAlgorithmEnum { recursiveBacktrackingAlgorithm }
+
 class Direction {
   static const N = 1;
   static const S = 2;

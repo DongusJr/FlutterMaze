@@ -3,7 +3,11 @@ import 'package:validators/validators.dart';
 
 enum MazeState { start, running, done }
 
-enum MazeAlgorithmEnum { recursiveBacktrackingAlgorithm, kruskalsAlgorithm }
+enum MazeAlgorithmEnum {
+  recursiveBacktrackingAlgorithm,
+  kruskalsAlgorithm,
+  primsAlgorithm
+}
 
 String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {
   String titleString = "";
@@ -30,6 +34,7 @@ class Direction {
   static const W = 4;
   static const E = 8;
   static const visit = 16;
+  static const done = 32;
 }
 
 const oppositeDirection = {

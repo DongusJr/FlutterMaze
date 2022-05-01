@@ -1,5 +1,6 @@
 import 'package:flutter_maze/constants/constants.dart';
 import 'package:flutter_maze/utils/algorithms/Kruskals_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
 import 'package:flutter_maze/utils/maze_algorithm.dart';
 
@@ -21,14 +22,13 @@ class Maze {
   set algorithmToUse(Enum algorithmToUse) {
     switch (algorithmToUse) {
       case MazeAlgorithmEnum.recursiveBacktrackingAlgorithm:
-        {
-          algorithm = RecursiveBacktrackingAlgorithm(this);
-        }
+        algorithm = RecursiveBacktrackingAlgorithm(this);
         break;
       case MazeAlgorithmEnum.kruskalsAlgorithm:
-        {
-          algorithm = KruskalsAlgorithm(this);
-        }
+        algorithm = KruskalsAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.primsAlgorithm:
+        algorithm = PrimsAlgorithm(this);
         break;
     }
   }
@@ -60,6 +60,20 @@ class Maze {
 
   bool isAt(int x, int y) {
     return x == currentX && y == currentY;
+  }
+
+  int getDirection(int fromX, int fromY, int toX, int toY) {
+    if (fromX > toX) {
+      return Direction.W;
+    } else if (fromX < toX) {
+      return Direction.E;
+    } else if (fromY > toY) {
+      return Direction.N;
+    } else if (fromY < toY) {
+      return Direction.S;
+    } else {
+      return -1;
+    }
   }
 
   // Grid Functions

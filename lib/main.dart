@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(milliseconds: 20));
+      await Future.delayed(const Duration(milliseconds: 5));
     }
   }
 
@@ -98,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                 algorithmButton(
                     MazeAlgorithmEnum.recursiveBacktrackingAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.kruskalsAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.primsAlgorithm),
               ],
             )
           ],

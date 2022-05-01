@@ -6,8 +6,8 @@ import 'package:flutter_maze/utils/maze_algorithm.dart';
 class Maze {
   int width;
   int height;
-  late int currentX = 0;
-  late int currentY = 0;
+  int currentX = -1;
+  int currentY = -1;
   Enum mazeState = MazeState.start;
   late MazeAlgorithm algorithm;
   late List<List<int>> grid;
@@ -40,6 +40,18 @@ class Maze {
   void step() {
     changed = false;
     algorithm.step();
+  }
+
+  void reset() {
+    for (var x = 0; x < width; x++) {
+      for (var y = 0; y < width; y++) {
+        grid[y][x] = 0;
+      }
+    }
+    currentX = -1;
+    currentY = -1;
+    mazeState = MazeState.start;
+    changed = true;
   }
 
   bool isValid(int x, int y) {

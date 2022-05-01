@@ -54,8 +54,14 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future.delayed(const Duration(milliseconds: 20));
     }
+  }
+
+  void resetMaze() {
+    setState(() {
+      maze.reset();
+    });
   }
 
   @override
@@ -83,7 +89,10 @@ class _HomePageState extends State<HomePage> {
                     willChange: true,
                   )),
             ),
-            functionButton("Run", runMaze),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              functionButton("Run", runMaze),
+              functionButton("Reset", resetMaze),
+            ]),
             Wrap(
               children: [
                 algorithmButton(

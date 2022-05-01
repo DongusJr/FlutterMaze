@@ -1,4 +1,5 @@
 import 'package:flutter_maze/constants/constants.dart';
+import 'package:flutter_maze/utils/algorithms/Kruskals_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
 import 'package:flutter_maze/utils/maze_algorithm.dart';
 
@@ -12,13 +13,23 @@ class Maze {
   late List<List<int>> grid;
   bool changed = true;
 
-  Maze(this.width, this.height, Enum algorithmToUse) {
+  Maze(this.width, this.height, Enum algorithmEnum) {
     grid = List.generate(height, (i) => List.filled(width, 0), growable: false);
+    algorithmToUse = algorithmEnum;
+  }
+
+  set algorithmToUse(Enum algorithmToUse) {
     switch (algorithmToUse) {
       case MazeAlgorithmEnum.recursiveBacktrackingAlgorithm:
         {
           algorithm = RecursiveBacktrackingAlgorithm(this);
         }
+        break;
+      case MazeAlgorithmEnum.kruskalsAlgorithm:
+        {
+          algorithm = KruskalsAlgorithm(this);
+        }
+        break;
     }
   }
 
@@ -27,6 +38,7 @@ class Maze {
   }
 
   void step() {
+    changed = false;
     algorithm.step();
   }
 

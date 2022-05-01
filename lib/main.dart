@@ -29,19 +29,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Maze maze = Maze(20, 20, MazeAlgorithmEnum.recursiveBacktrackingAlgorithm);
-  MazeAlgorithmEnum algorithmEnum =
+  int width = 10;
+  int height = 10;
+  late Maze maze;
+  MazeAlgorithmEnum currentAlgorithm =
       MazeAlgorithmEnum.recursiveBacktrackingAlgorithm;
 
   @override
-  void initState() {}
+  void initState() {
+    setState(() {
+      maze = Maze(width, height, currentAlgorithm);
+    });
+  }
+
+  void changeAlgorithm(MazeAlgorithmEnum algorithm) {
+    setState(() {
+      currentAlgorithm = algorithm;
+      maze.algorithmToUse = algorithm;
+    });
+  }
 
   void runMaze() async {
     while (maze.mazeState != MazeState.done) {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(milliseconds: 1));
+      await Future.delayed(const Duration(milliseconds: 100));
     }
   }
 
@@ -52,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(getEnumTitle(algorithmEnum),
+            Text(getEnumTitle(currentAlgorithm),
                 style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -74,7 +87,8 @@ class _HomePageState extends State<HomePage> {
             Wrap(
               children: [
                 algorithmButton(
-                    MazeAlgorithmEnum.recursiveBacktrackingAlgorithm)
+                    MazeAlgorithmEnum.recursiveBacktrackingAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.kruskalsAlgorithm),
               ],
             )
           ],
@@ -94,11 +108,7 @@ class _HomePageState extends State<HomePage> {
   ElevatedButton algorithmButton(MazeAlgorithmEnum newAlgorithmEnum) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(primary: Colors.white),
-      onPressed: () => {
-        setState(() {
-          algorithmEnum = newAlgorithmEnum;
-        })
-      },
+      onPressed: () => {changeAlgorithm(newAlgorithmEnum)},
       child: Text(getEnumTitle(newAlgorithmEnum),
           style: const TextStyle(color: Colors.blue)),
     );

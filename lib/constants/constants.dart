@@ -3,7 +3,7 @@ import 'package:validators/validators.dart';
 
 enum MazeState { start, running, done }
 
-enum MazeAlgorithmEnum { recursiveBacktrackingAlgorithm }
+enum MazeAlgorithmEnum { recursiveBacktrackingAlgorithm, kruskalsAlgorithm }
 
 String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {
   String titleString = "";

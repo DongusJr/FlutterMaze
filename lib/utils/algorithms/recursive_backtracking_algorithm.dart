@@ -26,7 +26,6 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
   RecursiveBacktrackingAlgorithm(maze) : super(maze);
 
   void step() {
-    maze.changed = false;
     switch (maze.mazeState) {
       case MazeState.start:
         {

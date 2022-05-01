@@ -44,8 +44,8 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
   }
 
   void _startStep() {
-    maze.currentX = rng.nextInt(maze.width - 1);
-    maze.currentY = rng.nextInt(maze.height - 1);
+    maze.currentX = rng.nextInt(maze.width);
+    maze.currentY = rng.nextInt(maze.height);
     maze.mazeState = MazeState.running;
     stack.push(StackState(maze.currentX, maze.currentY, _randomDirections()));
   }

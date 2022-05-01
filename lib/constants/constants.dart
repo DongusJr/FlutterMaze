@@ -6,7 +6,8 @@ enum MazeState { start, running, done }
 enum MazeAlgorithmEnum {
   recursiveBacktrackingAlgorithm,
   kruskalsAlgorithm,
-  primsAlgorithm
+  primsAlgorithm,
+  aldousBroderAlgorithm
 }
 
 String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {

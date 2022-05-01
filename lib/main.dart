@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
                     MazeAlgorithmEnum.recursiveBacktrackingAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.kruskalsAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.primsAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.aldousBroderAlgorithm),
               ],
             )
           ],
@@ -148,7 +149,9 @@ class MazePainter extends CustomPainter {
             ? Colors.green
             : (maze.goesDir(x, y, Direction.visit))
                 ? Colors.red.shade200
-                : Colors.white;
+                : (maze.isBlank(x, y)
+                    ? Colors.blueGrey.shade200
+                    : Colors.white);
         BorderSide borderSide = const BorderSide(width: 4, color: Colors.black);
         Rect rect = Rect.fromLTWH((boxWidth - strokeWidth) * x,
             (boxHeight - strokeWidth) * y, boxWidth, boxHeight);

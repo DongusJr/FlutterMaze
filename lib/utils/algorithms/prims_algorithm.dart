@@ -59,18 +59,18 @@ class PrimsAlgorithm extends MazeAlgorithm {
       neighbours.add(Tuple2(x, y + 1));
     }
     return neighbours[
-        (neighbours.length > 1) ? rng.nextInt(neighbours.length - 1) : 0];
+        (neighbours.length > 1) ? rng.nextInt(neighbours.length) : 0];
   }
 
   Tuple2 popRandomCell() {
-    return undoneCells.removeAt(
-        undoneCells.length > 1 ? rng.nextInt(undoneCells.length - 1) : 0);
+    return undoneCells
+        .removeAt(undoneCells.length > 1 ? rng.nextInt(undoneCells.length) : 0);
   }
 
   void _startStep() {
     maze.changed = true;
-    maze.currentX = rng.nextInt(maze.width - 1);
-    maze.currentY = rng.nextInt(maze.height - 1);
+    maze.currentX = rng.nextInt(maze.width);
+    maze.currentY = rng.nextInt(maze.height);
     _addUndoneCells();
     maze.markAt(maze.currentX, maze.currentY, Direction.done);
     maze.mazeState = MazeState.running;

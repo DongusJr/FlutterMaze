@@ -1,14 +1,35 @@
 import 'package:flutter/cupertino.dart';
+import 'package:validators/validators.dart';
 
 enum MazeState { start, running, done }
 
 enum MazeAlgorithmEnum { recursiveBacktrackingAlgorithm }
+
+String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {
+  String titleString = "";
+  bool first = true;
+  algorithmEnum.name.runes.forEach((int rune) {
+    var char = String.fromCharCode(rune);
+    if (first) {
+      titleString += char.toUpperCase();
+      first = false;
+    } else {
+      if (isUppercase(char)) {
+        titleString += " " + char;
+      } else {
+        titleString += char;
+      }
+    }
+  });
+  return titleString;
+}
 
 class Direction {
   static const N = 1;
   static const S = 2;
   static const W = 4;
   static const E = 8;
+  static const visit = 16;
 }
 
 const oppositeDirection = {

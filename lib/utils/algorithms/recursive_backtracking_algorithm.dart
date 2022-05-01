@@ -53,15 +53,23 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
 
   void _runningStep() {
     while (maze.mazeState != MazeState.done) {
-      StackState currentState = stack.top();
-      if (currentState.directions.isEmpty) {
-        stack.pop();
-        if (stack.isEmpty) {
-          maze.mazeState = MazeState.done;
-          return;
-        }
-        continue;
+      if (stack.isEmpty) {
+        maze.changed = true;
+        maze.mazeState = MazeState.done;
+        return;
       }
+
+      StackState currentState = stack.top();
+      maze.currentX = currentState.x;
+      maze.currentY = currentState.y;
+
+      if (currentState.directions.isEmpty) {
+        maze.changed = true;
+        StackState lastState = stack.pop();
+        maze.unmarkAt(lastState.x, lastState.y, Direction.visit);
+        return;
+      }
+
       int direction = currentState.popDirection();
       int newX = currentState.x + moveXMap[direction]!;
       int newY = currentState.y + moveYMap[direction]!;
@@ -69,21 +77,14 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
       if (maze.isValid(newX, newY)) {
         if (maze.isBlank(newX, newY)) {
           stack.push(StackState(newX, newY, _randomDirections()));
-          maze.markAt(currentState.x, currentState.y, direction);
+          maze.markAt(
+              maze.currentX, maze.currentY, direction | Direction.visit);
 
           int oppDir = oppositeDirection[direction]!;
           maze.markAt(newX, newY, oppDir);
           maze.changed = true;
           return;
         }
-      }
-      if (currentState.directions.isEmpty) {
-        maze.changed = true;
-        stack.pop();
-      }
-
-      if (stack.isEmpty) {
-        maze.mazeState = MazeState.done;
       }
     }
   }

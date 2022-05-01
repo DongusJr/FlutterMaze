@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_maze/constants/constants.dart';
 import 'package:flutter_maze/utils/maze.dart';
+import 'package:flutter_maze/utils/maze_algorithm.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Maze maze = Maze(10, 10, MazeAlgorithmEnum.recursiveBacktrackingAlgorithm);
+  Maze maze = Maze(20, 20, MazeAlgorithmEnum.recursiveBacktrackingAlgorithm);
+  MazeAlgorithmEnum algorithmEnum =
+      MazeAlgorithmEnum.recursiveBacktrackingAlgorithm;
 
   @override
   void initState() {}
@@ -38,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 1));
     }
   }
 
@@ -47,10 +50,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            Text(getEnumTitle(algorithmEnum),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 48)),
             Container(
-              width: 800,
-              height: 800,
+              width: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.6,
               color: Colors.white,
               child: Container(
                   width: double.infinity,
@@ -58,15 +67,40 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                   child: CustomPaint(
                     painter: MazePainter(maze),
+                    willChange: true,
                   )),
             ),
-            ElevatedButton(
-              onPressed: runMaze,
-              child: Text("Start"),
+            functionButton("Run", runMaze),
+            Wrap(
+              children: [
+                algorithmButton(
+                    MazeAlgorithmEnum.recursiveBacktrackingAlgorithm)
+              ],
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget functionButton(String buttonText, Function onPressedFunction) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(primary: Colors.white),
+      onPressed: () => onPressedFunction(),
+      child: Text(buttonText, style: const TextStyle(color: Colors.blue)),
+    );
+  }
+
+  ElevatedButton algorithmButton(MazeAlgorithmEnum newAlgorithmEnum) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(primary: Colors.white),
+      onPressed: () => {
+        setState(() {
+          algorithmEnum = newAlgorithmEnum;
+        })
+      },
+      child: Text(getEnumTitle(newAlgorithmEnum),
+          style: const TextStyle(color: Colors.blue)),
     );
   }
 }
@@ -86,20 +120,19 @@ class MazePainter extends CustomPainter {
 
     final paint = Paint()
       ..style = PaintingStyle.fill
-      ..strokeWidth = 4.0
-      ..color = Colors.black;
-
-    final otherPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 4.0
-      ..color = Colors.white;
+      ..strokeWidth = 4.0;
 
     for (var x = 0; x < mazeWidth; x++) {
       for (var y = 0; y < mazeHeight; y++) {
+        paint.color = maze.isAt(x, y) && maze.mazeState == MazeState.running
+            ? Colors.green
+            : (maze.goesDir(x, y, Direction.visit))
+                ? Colors.red.shade200
+                : Colors.white;
         BorderSide borderSide = const BorderSide(width: 4, color: Colors.black);
         Rect rect = Rect.fromLTWH((boxWidth - strokeWidth) * x,
             (boxHeight - strokeWidth) * y, boxWidth, boxHeight);
-        canvas.drawRect(rect, otherPaint);
+        canvas.drawRect(rect, paint);
         paintBorder(canvas, rect,
             top: maze.goesDir(x, y, Direction.N) ? BorderSide.none : borderSide,
             bottom:

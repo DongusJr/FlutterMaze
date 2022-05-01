@@ -34,9 +34,14 @@ class Maze {
     return (0 <= x && x < width) && ((0 <= y) && (y < height));
   }
 
+  bool isAt(int x, int y) {
+    return x == currentX && y == currentY;
+  }
+
   // Grid Functions
   int valAt(int x, int y) => grid[y][x];
   int markAt(int x, int y, int direction) => grid[y][x] |= direction;
+  int unmarkAt(int x, int y, int direction) => grid[y][x] &= ~direction;
   bool isBlank(int x, int y) => grid[y][x] == 0;
   bool goesDir(int x, int y, int direction) => grid[y][x] & direction != 0;
 }

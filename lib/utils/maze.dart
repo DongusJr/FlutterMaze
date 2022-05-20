@@ -5,6 +5,7 @@ import 'package:flutter_maze/utils/algorithms/binary_tree_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/hunt_and_kill_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/sidewinderAlgorithm.dart';
 import 'package:flutter_maze/utils/algorithms/wilsons_algorithm.dart';
 import 'package:flutter_maze/utils/maze_algorithm.dart';
 
@@ -45,6 +46,9 @@ class Maze {
         break;
       case MazeAlgorithmEnum.binaryTreeAlgorithm:
         algorithm = BinaryTreeAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.sidewinderAlgorithm:
+        algorithm = SidewinderAlgorithm(this);
         break;
     }
   }

@@ -111,6 +111,7 @@ class _HomePageState extends State<HomePage> {
                 algorithmButton(MazeAlgorithmEnum.wilsonsAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.huntAndKillAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.binaryTreeAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.sidewinderAlgorithm),
               ],
             )
           ],

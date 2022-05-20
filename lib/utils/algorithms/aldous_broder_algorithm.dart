@@ -82,4 +82,8 @@ class AldousBroderAlgorithm extends MazeAlgorithm {
       step();
     }
   }
+
+  void reset() {
+    remaining = maze.width * maze.height;
+  }
 }

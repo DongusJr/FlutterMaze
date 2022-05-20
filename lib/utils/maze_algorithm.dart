@@ -8,4 +8,5 @@ abstract class MazeAlgorithm {
   void step();
   void watch();
   void run();
+  void reset();
 }

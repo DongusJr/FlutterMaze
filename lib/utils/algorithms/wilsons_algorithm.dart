@@ -12,6 +12,10 @@ class WilsonsAlgorithm extends MazeAlgorithm {
   Tuple2? walkingCell;
 
   WilsonsAlgorithm(maze) : super(maze) {
+    initState();
+  }
+
+  void initState() {
     walkingPath = <Tuple2, int>{};
     remainingSet = <Tuple2>{};
     for (var x = 0; x < maze.width; x++) {
@@ -129,5 +133,9 @@ class WilsonsAlgorithm extends MazeAlgorithm {
     while (maze.mazeState != MazeState.done) {
       step();
     }
+  }
+
+  void reset() {
+    initState();
   }
 }

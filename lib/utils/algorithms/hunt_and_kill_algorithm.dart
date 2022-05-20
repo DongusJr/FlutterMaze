@@ -158,4 +158,10 @@ class HuntAndKillAlgorithm extends MazeAlgorithm {
       step();
     }
   }
+
+  void reset() {
+    lastHuntRow = 0;
+    currentRow = 0;
+    lastState = MazeState.start;
+  }
 }

@@ -103,4 +103,8 @@ class RecursiveBacktrackingAlgorithm extends MazeAlgorithm {
       step();
     }
   }
+
+  void reset() {
+    return;
+  }
 }

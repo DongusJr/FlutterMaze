@@ -103,4 +103,8 @@ class PrimsAlgorithm extends MazeAlgorithm {
       step();
     }
   }
+
+  void reset() {
+    return;
+  }
 }

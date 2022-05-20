@@ -60,10 +60,11 @@ class Maze {
         grid[y][x] = 0;
       }
     }
-    currentX = -1;
-    currentY = -1;
     mazeState = MazeState.start;
     changed = true;
+    currentX = -1;
+    currentY = -1;
+    algorithm.reset();
   }
 
   bool isValid(int x, int y) {

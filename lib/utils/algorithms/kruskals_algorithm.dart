@@ -28,6 +28,10 @@ class KruskalsAlgorithm extends MazeAlgorithm {
   Tuple4? lastMarked;
 
   KruskalsAlgorithm(maze) : super(maze) {
+    initState();
+  }
+
+  void initState() {
     edges = [];
     for (var x = 0; x < maze.width; x++) {
       for (var y = 0; y < maze.height; y++) {
@@ -109,5 +113,9 @@ class KruskalsAlgorithm extends MazeAlgorithm {
     while (maze.mazeState != MazeState.done) {
       step();
     }
+  }
+
+  void reset() {
+    initState();
   }
 }

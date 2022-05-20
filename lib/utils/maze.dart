@@ -1,6 +1,7 @@
 import 'package:flutter_maze/constants/constants.dart';
 import 'package:flutter_maze/utils/algorithms/Kruskals_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/aldous_broder_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/binary_tree_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/hunt_and_kill_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
@@ -41,6 +42,9 @@ class Maze {
         break;
       case MazeAlgorithmEnum.huntAndKillAlgorithm:
         algorithm = HuntAndKillAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.binaryTreeAlgorithm:
+        algorithm = BinaryTreeAlgorithm(this);
         break;
     }
   }

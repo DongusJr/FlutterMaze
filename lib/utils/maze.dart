@@ -1,6 +1,7 @@
 import 'package:flutter_maze/constants/constants.dart';
 import 'package:flutter_maze/utils/algorithms/Kruskals_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/aldous_broder_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/hunt_and_kill_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/wilsons_algorithm.dart';
@@ -37,6 +38,9 @@ class Maze {
         break;
       case MazeAlgorithmEnum.wilsonsAlgorithm:
         algorithm = WilsonsAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.huntAndKillAlgorithm:
+        algorithm = HuntAndKillAlgorithm(this);
         break;
     }
   }
@@ -88,6 +92,7 @@ class Maze {
   int valAt(int x, int y) => grid[y][x];
   int markAt(int x, int y, int direction) => grid[y][x] |= direction;
   int unmarkAt(int x, int y, int direction) => grid[y][x] &= ~direction;
+  bool hasDir(int x, int y) => grid[y][x] & 15 != 0;
   bool isBlank(int x, int y) => grid[y][x] == 0;
   bool goesDir(int x, int y, int direction) => grid[y][x] & direction != 0;
 }

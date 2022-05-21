@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         maze.step();
       });
-      await Future.delayed(const Duration(microseconds: 1));
+      await Future.delayed(const Duration(microseconds: 10));
     }
     print("DONE");
   }
@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                   height: double.infinity,
                   color: Colors.white,
                   child: CustomPaint(
+                    isComplex: true,
                     painter: MazePainter(maze),
                     willChange: true,
                   )),
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                 algorithmButton(MazeAlgorithmEnum.huntAndKillAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.binaryTreeAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.sidewinderAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.ellersAlgorithm),
               ],
             )
           ],

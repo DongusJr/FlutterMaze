@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       currentAlgorithm = algorithm;
       maze.algorithmToUse = algorithm;
+      maze.reset();
     });
   }
 
@@ -114,6 +115,7 @@ class _HomePageState extends State<HomePage> {
                 algorithmButton(MazeAlgorithmEnum.binaryTreeAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.sidewinderAlgorithm),
                 algorithmButton(MazeAlgorithmEnum.ellersAlgorithm),
+                algorithmButton(MazeAlgorithmEnum.recursiveDivisionAlgorithm),
               ],
             )
           ],

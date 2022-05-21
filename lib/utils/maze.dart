@@ -6,6 +6,7 @@ import 'package:flutter_maze/utils/algorithms/ellers_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/hunt_and_kill_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/prims_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/recursive_backtracking_algorithm.dart';
+import 'package:flutter_maze/utils/algorithms/recursive_division_algorithm.dart';
 import 'package:flutter_maze/utils/algorithms/sidewinderAlgorithm.dart';
 import 'package:flutter_maze/utils/algorithms/wilsons_algorithm.dart';
 import 'package:flutter_maze/utils/maze_algorithm.dart';
@@ -53,6 +54,9 @@ class Maze {
         break;
       case MazeAlgorithmEnum.ellersAlgorithm:
         algorithm = EllersAlgorithm(this);
+        break;
+      case MazeAlgorithmEnum.recursiveDivisionAlgorithm:
+        algorithm = RecursiveDivisionAlgorithm(this);
         break;
     }
   }

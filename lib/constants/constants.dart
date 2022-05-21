@@ -12,7 +12,8 @@ enum MazeAlgorithmEnum {
   huntAndKillAlgorithm,
   binaryTreeAlgorithm,
   sidewinderAlgorithm,
-  ellersAlgorithm
+  ellersAlgorithm,
+  recursiveDivisionAlgorithm,
 }
 
 String getEnumTitle(MazeAlgorithmEnum algorithmEnum) {
